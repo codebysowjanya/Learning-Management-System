@@ -1,102 +1,140 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import Link from "next/link";
+import styles from "./Home.module.css";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
+export default function HomePage() {
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <main className={styles.page}>
+      <nav className={styles.navbar}>
+        <div className={styles.logo}>
+          Learn<span>Hub</span>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
+
+        <div className={styles.navActions}>
+          <Link href="/login" className={styles.loginButton}>
+            Sign In
+          </Link>
+
+          <Link href="/register" className={styles.signupButton}>
+            Get Started
+          </Link>
+        </div>
+      </nav>
+
+      <section className={styles.hero}>
+        <div>
+          <span className={styles.badge}>
+            MODERN ONLINE LEARNING
+          </span>
+
+          <h1>
+            Learn.
+            <br />
+            Create.
+            <br />
+            <span className={styles.highlight}>Grow.</span>
+          </h1>
+
+          <p className={styles.heroText}>
+            LearnHub is a full-stack learning platform where
+            students can discover courses, learn at their own
+            pace, and track their progress.
+          </p>
+
+          <div className={styles.heroButtons}>
+            <Link
+              href="/student/courses"
+              className={styles.primaryButton}
+            >
+              Explore Courses →
+            </Link>
+
+            <Link
+              href="/register"
+              className={styles.secondaryButton}
+            >
+              Create Account
+            </Link>
+          </div>
+
+          <div className={styles.stats}>
+            <div className={styles.stat}>
+              <strong>📚</strong>
+              <span>Structured Courses</span>
+            </div>
+
+            <div className={styles.stat}>
+              <strong>✓</strong>
+              <span>Progress Tracking</span>
+            </div>
+
+            <div className={styles.stat}>
+              <strong>🔐</strong>
+              <span>Secure Learning</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.heroCard}>
+          <div className={styles.cardIcon}>🎓</div>
+
+          <h2>Your learning journey starts here.</h2>
+
+          <p>
+            Explore courses, enroll in what interests you,
+            complete lessons, and watch your progress grow.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.featuresSection}>
+        <div className={styles.sectionHeading}>
+          <h2>Everything you need to learn</h2>
+
+          <p>
+            A simple learning experience for students and
+            instructors.
+          </p>
+        </div>
+
+        <div className={styles.features}>
+          <article className={styles.feature}>
+            <div className={styles.featureIcon}>📚</div>
+
+            <h3>Discover Courses</h3>
+
+            <p>
+              Browse available courses and find content that
+              matches your learning goals.
+            </p>
+          </article>
+
+          <article className={styles.feature}>
+            <div className={styles.featureIcon}>✓</div>
+
+            <h3>Track Progress</h3>
+
+            <p>
+              Mark lessons as completed and keep track of
+              your learning progress.
+            </p>
+          </article>
+
+          <article className={styles.feature}>
+            <div className={styles.featureIcon}>✦</div>
+
+            <h3>Create & Manage</h3>
+
+            <p>
+              Instructors can create courses, upload
+              thumbnails, and organize lessons.
+            </p>
+          </article>
+        </div>
+      </section>
+
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
+        © 2026 LearnHub · Built for modern online learning
       </footer>
-    </div>
+    </main>
   );
 }
